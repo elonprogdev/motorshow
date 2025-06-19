@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{css_path}}">
     <title>Motorshow</title>
-    <style>
+    <!-- <style>
         body {
             font-family: Arial, sans-serif;
             background: #f3f3f3;
@@ -54,7 +55,7 @@
             margin-right: 15px;
             font-weight: bold;
         }
-    </style>
+    </style> -->
 </head>
 <body>
 
@@ -70,14 +71,14 @@
     </div>
 
     <div class="car-list" id="carList">
-        {% for i in models %} 
+        {% for i in cars_models %} 
         <div class="car-item">
-            <span class="id">{{i[0]}}</span>
-            <span class="model">{{i[1]}}</span>
-            <span class="volume">{{i[2]}} cc</span>
-            <span class="price">${{i[3]}}</span>
-            <span class="year">{{i[4]}}</span>
-            <span class="mileage">{{i[5]}} km</span>
+            <span class="id">{{i.id}}</span>
+            <span class="model">{{i.model}}</span>
+            <span class="volume">{{i.volume}} cc</span>
+            <span class="price">${{i.price}}</span>
+            <span class="year">{{i.year}}</span>
+            <span class="mileage">{{i.mileage}} km</span>
         </div>
         {% endfor %}
     </div>

@@ -1,6 +1,5 @@
 import sqlite3 
 from cars_data import data
-# from clients_data import data
 
 
 
