@@ -15,3 +15,14 @@ def home():
     return render_template('home.html',
                            cars_models=sorted_cars,
                            css_path=url_for('static', filename='css/home.css'))
+
+def registration():
+    """@app.route("/registration")"""
+    return render_template("client/registration.html")
+
+
+
+def login():
+    """@app.route("/login")"""
+    message_style = "no-message"
+    return render_template("client/login.html", style = message_style)

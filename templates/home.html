@@ -61,6 +61,28 @@
 
     <h1>Motorshow</h1>
 
+       <header class="header">
+        <nav class="nav">
+       
+            <a href="/"><button class="btn">Home</button></a>
+            <a href="/about"><button class="btn">About us</button></a>
+            <a href="/catalog"><button class="btn">Catalog</button></a>
+            
+            {% if logged_in %}
+            <a href="/basket"><button class="btn">Basket</button></a>
+            <a href="{{ url_for('logout') if logged_in else url_for('login') }}">
+                <button class="btn">
+                    {{ 'Logout' if logged_in else 'Login' }}
+                </button>
+            </a>
+            <a href="/profile"><button class="btn">{{ Profile }}</button></a>
+            {% else %}
+            <a href="/login"><button class="btn">Login</button></a>
+            {% endif %}
+            
+        </nav>
+    </header>
+
     <div class="filters">
         <input type="text" id="idSearch" placeholder="ID">
         <input type="text" id="modelSearch" placeholder="Model">

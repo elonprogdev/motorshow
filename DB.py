@@ -13,23 +13,23 @@ with sqlite3.connect("cars.db") as connect:
 
     cursor.execute("PRAGMA foreign_keys = ON")
 
-    cursor.execute("""CREATE TABLE IF NOT EXISTS
-                   Cars(
-                   id INTEGER PRIMARY KEY AUTOINCREMENT,
-                   model TEXT NOT NULL,
-                   volume INTEGER NOT NULL,
-                   price INTEGER NOT NULL, 
-                   year INTEGER NOT NULL,
-                   mileage INTEGER NOT NULL
-                   )""")
+    # cursor.execute("""CREATE TABLE IF NOT EXISTS
+    #                Cars(
+    #                id INTEGER PRIMARY KEY AUTOINCREMENT,
+    #                model TEXT NOT NULL,
+    #                volume INTEGER NOT NULL,
+    #                price INTEGER NOT NULL, 
+    #                year INTEGER NOT NULL,
+    #                mileage INTEGER NOT NULL
+    #                )""")
     
 
-    # cursor.execute("""CREATE TABLE IF NOT EXISTS
-    #                Clients(
-    #                id INTEGER PRIMARY KEY AUTOINCREMENT,
-    #                e_mail TEXT NOT NULL,
-    #                phone TEXT NOT NULL
-    #                )""")
+    cursor.execute("""CREATE TABLE IF NOT EXISTS
+                   Clients(
+                   id INTEGER PRIMARY KEY AUTOINCREMENT,
+                   e_mail TEXT NOT NULL,
+                   phone TEXT NOT NULL
+                   )""")
 
 
     # cursor.execute("""CREATE TABLE IF NOT EXISTS

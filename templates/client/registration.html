@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTER</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/add.css')}}">
+</head>
+<body>
+    <div class="container">
+        <form action="/register" method=['GET'] class="form-lamp">
+            <h2>REGISTER</h2>
+<!-- 
+            {% if message %}
+            <p>{{ message }}</p>
+            {% endif %} -->
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+            {% for message in messages %}
+            <li class="alert-message">{{ message }}</li>
+            {% endfor %}
+            </ul>
+            {% else %}
+            <ul class="no-messages">
+            <li class="alert-message"></li>
+            </ul>
+            {% endif %}
+            {% endwith %}
+
+            <label for="e_mail">Email:</label>
+            <input type="text" id="e_mail" name="e_mail" placeholder="Enter your email" required/>
+
+            <label for="number">Phone Number:</label>
+            <input type="number" id="number" name="number" placeholder="Enter your phone number" required/>
+            
+            <button type="submit" class="btn-add">REGISTER</button>
+        </form>
+        <a href="/" class="btn-home">Home</a>
+    </div>
+</body>
+</html>
+
