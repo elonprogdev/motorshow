@@ -34,7 +34,7 @@ def write_counters(counters):
 
 
 app.add_url_rule("/", "home", info_controller.home)  
-app.add_url_rule("/about", "about", info_controller.about)
+# app.add_url_rule("/about", "about", info_controller.about)
 app.add_url_rule("/registration", "registration", info_controller.registration)
 app.add_url_rule("/login", "login", info_controller.login)
  
