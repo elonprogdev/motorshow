@@ -32,6 +32,10 @@
         </nav>
     </header>
 
+    {% if logged_in %}
+    <a href="{{ url_for('advert') }}"><button class="btn">Создать объявление</button></a>
+    {% endif %}
+
     <div class="filters">
         <input type="text" id="idSearch" placeholder="ID">
         <input type="text" id="brandSearch" placeholder="Brand">

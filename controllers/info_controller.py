@@ -28,3 +28,8 @@ def login():
     """@app.route("/login")"""
     message_style = "no-message"
     return render_template("client/login.html", style = message_style)
+
+
+def advert():
+    """@app.route("/advert")"""
+    return render_template("client/advert.html")

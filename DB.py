@@ -37,6 +37,26 @@ with sqlite3.connect("cars.db") as connect:
     #                )""")
 
 
+    
+    cursor.execute("""
+            CREATE TABLE IF NOT EXISTS CarAdverts (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                client_id INTEGER NOT NULL,
+                brand TEXT NOT NULL,
+                model TEXT NOT NULL,
+                year INTEGER NOT NULL,
+                mileage INTEGER NOT NULL,
+                fuel_type TEXT NOT NULL,
+                transmission TEXT NOT NULL,
+                price INTEGER NOT NULL,
+                description TEXT,
+                photo TEXT,
+                FOREIGN KEY (client_id) REFERENCES Clients(id)
+            )
+            """)
+          
+
+
     # cursor.execute("""CREATE TABLE IF NOT EXISTS
     #            Basket(
     #            id INTEGER PRIMARY KEY,

@@ -9,7 +9,7 @@
 <body>
     <h1>Создать объявление</h1>
 
-    <form method="post" action="{{ url_for('create_ad') }}" enctype="multipart/form-data">
+    <form action="{{ url_for('advert_create') }}" method="POST" enctype="multipart/form-data">
         <input name="brand" placeholder="Марка" required><br>
         <input name="model" placeholder="Модель" required><br>
         <input name="year" type="number" placeholder="Год выпуска" required><br>

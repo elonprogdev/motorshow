@@ -1,5 +1,5 @@
 from flask import Flask
-from controllers import info_controller, client_controller
+from controllers import info_controller, client_controller, advert_controller
 import json, os
 
 app = Flask("motorshow")
@@ -37,11 +37,14 @@ app.add_url_rule("/", "home", info_controller.home)
 # app.add_url_rule("/about", "about", info_controller.about)
 app.add_url_rule("/registration", "registration", info_controller.registration)
 app.add_url_rule("/login", "login", info_controller.login)
+app.add_url_rule("/advert", "advert", info_controller.advert)
  
 
 app.add_url_rule("/register", "register", client_controller.register, methods=["GET"])
 app.add_url_rule("/log_in", "log_in", client_controller.log_in, methods=["GET"])
 app.add_url_rule("/logout", "logout", client_controller.logout, methods=["GET"])
 app.add_url_rule("/profile", "profile", client_controller.profile, methods=["GET"] )
+
+app.add_url_rule("/advert_create", "advert_create", advert_controller.advert_create, methods=['POST'])
 
 app.run(debug=True)
