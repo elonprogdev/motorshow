@@ -5,7 +5,7 @@ import sqlite3
 with sqlite3.connect("cars.db") as connect:
     cursor = connect.cursor()
 
-    # cursor.execute("DROP TABLE IF EXISTS Lamps")
+    # cursor.execute("DROP TABLE IF EXISTS Cars")
     # cursor.execute("DROP TABLE IF EXISTS Basket")
     # cursor.execute("DROP TABLE IF EXISTS Clients")
     # cursor.execute("DROP TABLE IF EXISTS Orders")
@@ -13,23 +13,28 @@ with sqlite3.connect("cars.db") as connect:
 
     cursor.execute("PRAGMA foreign_keys = ON")
 
-    # cursor.execute("""CREATE TABLE IF NOT EXISTS
-    #                Cars(
-    #                id INTEGER PRIMARY KEY AUTOINCREMENT,
-    #                model TEXT NOT NULL,
-    #                volume INTEGER NOT NULL,
-    #                price INTEGER NOT NULL, 
-    #                year INTEGER NOT NULL,
-    #                mileage INTEGER NOT NULL
-    #                )""")
+    # cursor.execute("""CREATE TABLE IF NOT EXISTS Cars (
+    #             id INTEGER PRIMARY KEY AUTOINCREMENT,
+    #             model TEXT NOT NULL,
+    #             volume INTEGER NOT NULL,
+    #             price INTEGER NOT NULL,
+    #             year INTEGER NOT NULL,
+    #             mileage INTEGER NOT NULL,
+    #             brand TEXT NOT NULL,
+    #             fuel_type TEXT NOT NULL,
+    #             transmission TEXT NOT NULL,
+    #             description TEXT NOT NULL,
+    #             photo TEXT,
+    #             client_id INTEGER NOT NULL
+    #             )""")
     
 
-    cursor.execute("""CREATE TABLE IF NOT EXISTS
-                   Clients(
-                   id INTEGER PRIMARY KEY AUTOINCREMENT,
-                   e_mail TEXT NOT NULL,
-                   phone TEXT NOT NULL
-                   )""")
+    # cursor.execute("""CREATE TABLE IF NOT EXISTS
+    #                Clients(
+    #                id INTEGER PRIMARY KEY AUTOINCREMENT,
+    #                e_mail TEXT NOT NULL,
+    #                phone TEXT NOT NULL
+    #                )""")
 
 
     # cursor.execute("""CREATE TABLE IF NOT EXISTS

@@ -1,73 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{css_path}}">
+    <link rel="stylesheet" type="text/css" href="{{ css_path }}">
     <title>Motorshow</title>
-    <!-- <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f3f3f3;
-            padding: 30px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        .filters {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .filters input {
-            padding: 10px;
-            width: 150px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            outline: none;
-        }
-
-        .car-list {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        .car-item {
-            padding: 12px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .car-item:last-child {
-            border-bottom: none;
-        }
-
-        .car-item span {
-            display: inline-block;
-            margin-right: 15px;
-            font-weight: bold;
-        }
-    </style> -->
 </head>
+
 <body>
 
     <h1>Motorshow</h1>
 
-       <header class="header">
+    <header class="header">
         <nav class="nav">
-       
             <a href="/"><button class="btn">Home</button></a>
             <a href="/about"><button class="btn">About us</button></a>
             <a href="/catalog"><button class="btn">Catalog</button></a>
-            
+
             {% if logged_in %}
             <a href="/basket"><button class="btn">Basket</button></a>
             <a href="{{ url_for('logout') if logged_in else url_for('login') }}">
@@ -79,40 +29,51 @@
             {% else %}
             <a href="/login"><button class="btn">Login</button></a>
             {% endif %}
-            
         </nav>
     </header>
 
     <div class="filters">
         <input type="text" id="idSearch" placeholder="ID">
+        <input type="text" id="brandSearch" placeholder="Brand">
         <input type="text" id="modelSearch" placeholder="Model">
         <input type="text" id="volumeSearch" placeholder="Volume">
         <input type="text" id="priceSearch" placeholder="Price">
         <input type="text" id="yearSearch" placeholder="Year">
         <input type="text" id="mileageSearch" placeholder="Mileage">
+        <input type="text" id="fuelTypeSearch" placeholder="Fuel Type">
+        <input type="text" id="transmissionSearch" placeholder="Transmission">
     </div>
 
     <div class="car-list" id="carList">
-        {% for i in cars_models %} 
+        {% for i in cars_models %}
         <div class="car-item">
-            <span class="id">{{i.id}}</span>
-            <span class="model">{{i.model}}</span>
-            <span class="volume">{{i.volume}} cc</span>
-            <span class="price">${{i.price}}</span>
-            <span class="year">{{i.year}}</span>
-            <span class="mileage">{{i.mileage}} km</span>
+            <img src="{{ url_for('static', filename='uploads/' + i.photo) }}" alt="Car Photo" width="200px" height="150px">
+            <div><strong>ID:</strong> <span class="id">{{ i.id }}</span></div>
+            <div><strong>Brand:</strong> <span class="brand">{{ i.brand }}</span></div>
+            <div><strong>Model:</strong> <span class="model">{{ i.model }}</span></div>
+            <div><strong>Volume:</strong> <span class="volume">{{ i.volume }} cc</span></div>
+            <div><strong>Price:</strong> <span class="price">${{ i.price }}</span></div>
+            <div><strong>Year:</strong> <span class="year">{{ i.year }}</span></div>
+            <div><strong>Mileage:</strong> <span class="mileage">{{ i.mileage }} km</span></div>
+            <div><strong>Fuel Type:</strong> <span class="fuelType">{{ i.fuel_type }}</span></div>
+            <div><strong>Transmission:</strong> <span class="transmission">{{ i.transmission }}</span></div>
+            <div><strong>Description:</strong> <span class="description">{{ i.description }}</span></div>
         </div>
+        <hr>
         {% endfor %}
     </div>
 
     <script>
         const inputs = {
             id: document.getElementById('idSearch'),
+            brand: document.getElementById('brandSearch'),
             model: document.getElementById('modelSearch'),
             volume: document.getElementById('volumeSearch'),
             price: document.getElementById('priceSearch'),
             year: document.getElementById('yearSearch'),
-            mileage: document.getElementById('mileageSearch')
+            mileage: document.getElementById('mileageSearch'),
+            fuelType: document.getElementById('fuelTypeSearch'),
+            transmission: document.getElementById('transmissionSearch')
         };
 
         const carItems = document.querySelectorAll('.car-item');
@@ -120,19 +81,25 @@
         function filterCars() {
             carItems.forEach(item => {
                 const id = item.querySelector('.id').textContent.toLowerCase();
+                const brand = item.querySelector('.brand').textContent.toLowerCase();
                 const model = item.querySelector('.model').textContent.toLowerCase();
                 const volume = item.querySelector('.volume').textContent.toLowerCase();
                 const price = item.querySelector('.price').textContent.toLowerCase();
                 const year = item.querySelector('.year').textContent.toLowerCase();
                 const mileage = item.querySelector('.mileage').textContent.toLowerCase();
+                const fuelType = item.querySelector('.fuelType').textContent.toLowerCase();
+                const transmission = item.querySelector('.transmission').textContent.toLowerCase();
 
-                const matches = 
+                const matches =
                     id.includes(inputs.id.value.toLowerCase()) &&
+                    brand.includes(inputs.brand.value.toLowerCase()) &&
                     model.includes(inputs.model.value.toLowerCase()) &&
                     volume.includes(inputs.volume.value.toLowerCase()) &&
                     price.includes(inputs.price.value.toLowerCase()) &&
                     year.includes(inputs.year.value.toLowerCase()) &&
-                    mileage.includes(inputs.mileage.value.toLowerCase());
+                    mileage.includes(inputs.mileage.value.toLowerCase()) &&
+                    fuelType.includes(inputs.fuelType.value.toLowerCase()) &&
+                    transmission.includes(inputs.transmission.value.toLowerCase());
 
                 item.style.display = matches ? 'block' : 'none';
             });
@@ -142,5 +109,7 @@
             input.addEventListener('input', filterCars);
         });
     </script>
+
 </body>
+
 </html>

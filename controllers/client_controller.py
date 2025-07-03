@@ -33,7 +33,7 @@ def register():
     if mark:
         return render_template('/client/login.html', style= "confirm-message")
     else:         
-        return redirect(url_for('/registration'))
+        return redirect(url_for('registration'))
 
 
 
