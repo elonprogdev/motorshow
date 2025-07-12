@@ -13,14 +13,14 @@ class Client:
         return f"id:{self.id}, e_mail: {self.e_mail}, phone: {self.phone}"
     
     
-    def add_self_to_clients(self, db_name="lamps.db"):
+    def add_self_to_clients(self, db_name="cars.db"):
         with sqlite3.connect(db_name) as connect:
             cursor = connect.cursor()
             cursor.execute("""INSERT INTO Clients
                                 (e_mail, phone) VALUES(?, ?)""", (self.e_mail, self.phone_number))
 
 
-    def get_client_by_email(self, db_name="lamps.db"):
+    def get_client_by_email(self, db_name="cars.db"):
         with sqlite3.connect(db_name) as connect:
             data = connect.cursor().execute(f"""SELECT id FROM Clients
                                 WHERE e_mail = ?""", (self.e_mail,))
@@ -28,7 +28,7 @@ class Client:
         
         
     @staticmethod
-    def delete_client_by_id(id_client, tab_name="Clients", col_name= "id", db_name="lamps.db"):
+    def delete_client_by_id(id_client, tab_name="Clients", col_name= "id", db_name="cars.db"):
         with sqlite3.connect(db_name) as connect:
             cursor = connect.cursor()
             cursor.execute(f"""DELETE FROM {tab_name}
@@ -36,14 +36,14 @@ class Client:
 
 
     @staticmethod
-    def get_all_clients_data(tab_name="Clients", db_name="lamps.db"):
+    def get_all_clients_data(tab_name="Clients", db_name="cars.db"):
         with sqlite3.connect(db_name) as connect:
             return Client.convert_data_to_profile_list (
                 connect.cursor().execute(f"SELECT * FROM {tab_name}").fetchall()) 
         
     
     @staticmethod 
-    def get_client_by_id(id_client, db_name="lamps.db"):
+    def get_client_by_id(id_client, db_name="cars.db"):
         with sqlite3.connect(db_name) as connect:
             return Client.convert_data_for_selected_client(
                 connect.cursor().execute(f"SELECT * FROM Clients WHERE id = (?)", (id_client,)).fetchall()
@@ -96,16 +96,16 @@ class Client:
                 session['logged_in'] = True
                 session['user_id'] = client_id
                 # add_to_json(id, e_mail, phone_number)
-                 # Проверяем, существует ли 'viewed_lamps' в сессии
-                if "viewed_lamps" not in session or not isinstance(session["viewed_lamps"], dict):
-                    session["viewed_lamps"] = {}  # Инициализируем как словарь, если он не существует
+                 # Проверяем, существует ли 'viewed_cars' в сессии
+                if "viewed_cars" not in session or not isinstance(session["viewed_cars"], dict):
+                    session["viewed_cars"] = {}  # Инициализируем как словарь, если он не существует
 
                 # Преобразуем client_id в строку для использования в сессии
                 client_id_str = str(client_id)
 
                 # Если список для этого client_id не существует, инициализируем его
-                if client_id_str not in session["viewed_lamps"]:
-                    session["viewed_lamps"][client_id_str] = []  # Инициализируем как список
+                if client_id_str not in session["viewed_cars"]:
+                    session["viewed_cars"][client_id_str] = []  # Инициализируем как список
                 return client_id, ""
       
     

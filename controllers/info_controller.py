@@ -33,3 +33,5 @@ def login():
 def advert():
     """@app.route("/advert")"""
     return render_template("client/advert.html")
+
+

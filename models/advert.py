@@ -68,6 +68,7 @@ class CarAdvert:
             cursor = conn.cursor()
             rows = cursor.execute("SELECT * FROM CarAdverts").fetchall()
             return [CarAdvert(*row) for row in rows]
+        
 
     @staticmethod
     def get_adverts_by_client(client_id, db_name="cars.db"):

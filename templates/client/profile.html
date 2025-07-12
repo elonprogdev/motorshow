@@ -1,0 +1,31 @@
+<h2>Профиль пользователя: {{ client.e_mail }}</h2>
+
+<h3>Объявления:</h3>
+{% if adverts %}
+    <ul>
+    {% for ad in adverts %}
+        <li>
+            <strong>{{ ad.brand }} {{ ad.model }}</strong> ({{ ad.year }}) - ${{ ad.price }}
+            <br>
+       
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Нет активных объявлений.</p>
+{% endif %}
+
+<hr>
+
+<h3>Отзывы о пользователе:</h3>
+<!-- {% if reviews %}
+    <ul>
+    {% for review in reviews %}
+        <li>
+            <strong>{{ review.author_email }}</strong>: {{ review.text }}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Пока нет отзывов.</p>
+{% endif %} -->

@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash, session, make_response
 from models.client import Client
+from models.advert import CarAdvert
 # from models.order import Order
 import config
 
@@ -8,17 +9,18 @@ import config
 
 
 # @app.route("/profile")
-def profile():
-    logged_in = session.get('logged_in', False) 
-    client_id = request.cookies.get('client_id')
-    # Чтение данных из cookie
-    e_mail = request.cookies.get('e_mail') # e-mail для кнопки "Profile"
-    print(session["viewed_lamps"][client_id])
+# def profile():
+#     # return render_template('/client/profile.html', css_path = url_for('static', filename='css/catalog.css'))
+#     logged_in = session.get('logged_in', False) 
+#     client_id = request.cookies.get('client_id')
+#     # Чтение данных из cookie
+#     e_mail = request.cookies.get('e_mail') # e-mail для кнопки "Profile"
+#     print(session["viewed_lamps"][client_id])
   
-    return render_template("client/profile.html", Profile = e_mail, logged_in=logged_in,
-                            client_data = Client.get_client_by_id(client_id),
-                            order_data = Order.get_all_orders_data_by_client_id(client_id),
-                            view=session["viewed_lamps"][client_id], css_path = url_for('static', filename='css/catalog.css') )
+#     return render_template("client/profile.html", Profile = e_mail, logged_in=logged_in,
+#                             client_data = Client.get_client_by_id(client_id),
+#                             order_data = Order.get_all_orders_data_by_client_id(client_id),
+#                             view=session["viewed_lamps"][client_id], css_path = url_for('static', filename='css/catalog.css') )
 
 
 
@@ -78,12 +80,60 @@ def logout():
     #     json.dump({}, file)
 
     # Удаляем cookie
-    response = make_response(redirect('/'))
-    response.set_cookie('client_id', '', expires=0)
-    response.set_cookie('e_mail', '', expires=0)
-    response.set_cookie('phone_number', '', expires=0)
+#     response = make_response(redirect('/'))
+#     response.set_cookie('client_id', '', expires=0)
+#     response.set_cookie('e_mail', '', expires=0)
+#     response.set_cookie('phone_number', '', expires=0)
 
-    return response
+#     return response
+
+# @app.route("/profile")
+# @app.route("/profile")
+# @app.route("/profile/<int:user_id>")
+def profile(user_id=None):
+    from models.advert import CarAdvert
+    # try:
+    #     from models.review import Review
+    # except ImportError:
+    #     Review = None
+
+    logged_in = session.get('logged_in', False)
+    current_client_id = request.cookies.get('client_id')
+    e_mail = request.cookies.get('e_mail')
+
+    # определяем чей профиль — свой или чужой
+    if user_id is None:
+        if not logged_in or not current_client_id:
+            return redirect(url_for('login'))
+        client_id = current_client_id
+    else:
+        client_id = user_id
+
+    client = Client.get_client_by_id(client_id)
+    if not client:
+        return "Пользователь не найден", 404
+
+    is_owner = (str(client_id) == str(current_client_id))
+
+    # объявления пользователя
+    adverts = CarAdvert.get_adverts_by_client(client_id)
+
+    # отзывы
+    # reviews = Review.get_reviews_for_client(client_id) if Review else []
+
+    return render_template(
+        "client/profile.html",
+        client=client,
+        adverts=adverts,
+        # reviews=reviews,
+        is_owner=is_owner,
+        logged_in=logged_in,
+        Profile=e_mail,
+        css_path=url_for('static', filename='css/catalog.css')
+    )
+
+
+ 
   
 
 
