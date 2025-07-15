@@ -1,28 +1,24 @@
-
+from models.car import Car  
 
 data = [
-    ("Corolla", 1600, 9500, 2015, 87000, "Toyota", "Petrol", "Automatic", "Compact, reliable car.", "default.jpg", 1),
-    ("Civic", 1800, 10500, 2016, 76000, "Honda", "Petrol", "Manual", "Sporty and economic.", "default.jpg", 1),
-    ("Focus", 1600, 8900, 2014, 92000, "Ford", "Diesel", "Manual", "Good family car.", "default.jpg", 1),
-    ("Cruze", 1800, 9700, 2015, 81000, "Chevrolet", "Petrol", "Automatic", "Comfortable interior.", "default.jpg", 1),
-    ("Golf", 1400, 11300, 2017, 69000, "Volkswagen", "Diesel", "Manual", "German quality.", "default.jpg", 1),
-    ("Elantra", 1600, 9800, 2016, 75000, "Hyundai", "Petrol", "Automatic", "Smooth drive.", "default.jpg", 1),
-    ("Ceed", 1600, 9600, 2015, 80000, "Kia", "Diesel", "Manual", "Spacious interior.", "default.jpg", 1),
-    ("Mazda 3", 2000, 11800, 2018, 60000, "Mazda", "Petrol", "Automatic", "Dynamic design.", "default.jpg", 1),
-    ("Octavia", 1600, 11000, 2017, 67000, "Skoda", "Diesel", "Manual", "Large trunk space.", "default.jpg", 1),
-    ("Megane", 1500, 9200, 2015, 83000, "Renault", "Petrol", "Automatic", "Comfortable ride.", "default.jpg", 1),
-    ("Sentra", 1800, 9900, 2016, 72000, "Nissan", "Petrol", "Manual", "Economic and compact.", "default.jpg", 1),
-    ("Astra", 1600, 9400, 2014, 91000, "Opel", "Diesel", "Automatic", "Reliable vehicle.", "default.jpg", 1),
-    ("308", 1500, 9000, 2014, 95000, "Peugeot", "Petrol", "Manual", "City-friendly car.", "default.jpg", 1),
-    ("Impreza", 2000, 12500, 2017, 66000, "Subaru", "Petrol", "Automatic", "All-wheel drive.", "default.jpg", 1),
-    ("1 Series", 1600, 13500, 2016, 70000, "BMW", "Diesel", "Manual", "Premium compact car.", "default.jpg", 1),
-    ("A3", 1400, 13800, 2018, 64000, "Audi", "Petrol", "Automatic", "Luxury hatchback.", "default.jpg", 1),
-    ("A-Class", 1600, 14500, 2018, 59000, "Mercedes", "Diesel", "Automatic", "Compact premium car.", "default.jpg", 1),
-    ("Tipo", 1400, 8700, 2016, 82000, "Fiat", "Petrol", "Manual", "Budget-friendly car.", "default.jpg", 1),
-    ("Leon", 1600, 10200, 2015, 78000, "Seat", "Diesel", "Manual", "Stylish design.", "default.jpg", 1),
-    ("C4", 1600, 9100, 2014, 94000, "Citroen", "Petrol", "Automatic", "Comfortable city car.", "default.jpg", 1)
+    Car(1, "Toyota", "Camry", 2019, 45000, "Gasoline", 2500, "Automatic", "White", 18000, "Хорошее состояние, один владелец", "car1.jpg", 1),
+    Car(2, "Honda", "Civic", 2020, 30000, "Gasoline", 1800, "Manual", "Black", 15500, "Малый расход, ухоженный салон", "car2.jpg", 1),
+    Car(3, "Ford", "Focus", 2018, 60000, "Diesel", 2000, "Automatic", "Gray", 13000, "Свежая ТО, новая резина", "car3.jpg", 1),
+    Car(4, "BMW", "3 Series", 2021, 25000, "Gasoline", 2000, "Automatic", "Blue", 28000, "Спорт пакет, полный привод", "car4.jpg", 1),
+    Car(5, "Mercedes", "C-Class", 2017, 55000, "Gasoline", 2200, "Automatic", "Silver", 27000, "Премиум комплектация", "car5.jpg", 1),
+    Car(6, "Volkswagen", "Golf", 2016, 70000, "Diesel", 1600, "Manual", "Red", 11000, "Низкий расход, ухоженный", "car6.jpg", 1),
+    Car(7, "Audi", "A4", 2022, 15000, "Gasoline", 2000, "Automatic", "Black", 35000, "Фулл опции, новая", "car7.jpg", 1),
+    Car(8, "Nissan", "Altima", 2019, 48000, "Gasoline", 2500, "CVT", "White", 17000, "Без ДТП, один владелец", "car8.jpg", 1),
+    Car(9, "Hyundai", "Elantra", 2020, 29000, "Gasoline", 1600, "Automatic", "Gray", 14500, "Отличное состояние", "car9.jpg", 1),
+    Car(10, "Kia", "Sportage", 2018, 52000, "Diesel", 2000, "Automatic", "Brown", 19000, "Полноприводный, семейный", "car10.jpg", 1),
+    Car(11, "Mazda", "6", 2019, 40000, "Gasoline", 2500, "Automatic", "Red", 17500, "Комфортный и динамичный", "car11.jpg", 1),
+    Car(12, "Chevrolet", "Malibu", 2020, 32000, "Gasoline", 2000, "Automatic", "Blue", 16500, "Новый аккумулятор", "car12.jpg", 1),
+    Car(13, "Skoda", "Octavia", 2017, 61000, "Diesel", 1900, "Manual", "Silver", 12000, "Надежная, недорогая в обслуживании", "car13.jpg", 1),
+    Car(14, "Renault", "Megane", 2016, 75000, "Gasoline", 1600, "Manual", "White", 9500, "Экономичный выбор", "car14.jpg", 1),
+    Car(15, "Peugeot", "308", 2018, 58000, "Diesel", 1500, "Manual", "Gray", 10500, "Недорогой дизель", "car15.jpg", 1),
+    Car(16, "Volvo", "S60", 2021, 22000, "Gasoline", 2000, "Automatic", "Black", 29500, "Безопасный и мощный", "car16.jpg", 1),
+    Car(17, "Subaru", "Forester", 2019, 47000, "Gasoline", 2500, "CVT", "Green", 21000, "Полный привод", "car17.jpg", 1),
+    Car(18, "Opel", "Insignia", 2017, 65000, "Diesel", 2000, "Manual", "Blue", 12500, "Большой и комфортный", "car18.jpg", 1),
+    Car(19, "Tesla", "Model 3", 2022, 10000, "Electric", 0, "Automatic", "White", 39000, "Электро, автопилот", "car19.jpg", 1),
+    Car(20, "Fiat", "Tipo", 2016, 80000, "Gasoline", 1400, "Manual", "Silver", 8900, "Бюджетный седан", "car20.jpg", 1),
 ]
-
-
-# cursor.executemany("INSERT INTO Cars (model, volume, price, year, mileage) VALUES (?, ?, ?, ?, ?)", cars_data)
-# conn.commit()

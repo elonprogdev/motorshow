@@ -1,15 +1,30 @@
 import sqlite3 
-from cars_data import data
-
-
+from cars_data import data  # data = [Car(...), Car(...), ...]
 
 if __name__ == "__main__":
     with sqlite3.connect("cars.db") as connect:
         cursor = connect.cursor()
 
         for i in data:
-            cursor.execute("""INSERT INTO Cars
-                              (model, volume, price, year, mileage, brand, fuel_type, transmission, description, photo, client_id)
-                              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-                           (i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10]))
+            cursor.execute("""
+                INSERT INTO Cars
+                (brand, model, year, mileage, engine_fuel, engine_volume, transmission, color, price, description, photo, client_id)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                i.brand,
+                i.model,
+                i.year,
+                i.mileage,
+                i.engine_fuel,
+                i.engine_volume,
+                i.transmission,
+                i.color,
+                i.price,
+                i.description,
+                i.photo,
+                i.client_id
+            ))
+
+        connect.commit()
+        print("Таблица Cars пересоздана и успешно заполнена.")
 

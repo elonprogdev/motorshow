@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash, session, make_response
 from models.client import Client
-from models.advert import CarAdvert
+from models.car import Car
 # from models.order import Order
 import config
 
@@ -90,8 +90,9 @@ def logout():
 # @app.route("/profile")
 # @app.route("/profile")
 # @app.route("/profile/<int:user_id>")
+
 def profile(user_id=None):
-    from models.advert import CarAdvert
+    from models.car import Car
     # try:
     #     from models.review import Review
     # except ImportError:
@@ -116,7 +117,7 @@ def profile(user_id=None):
     is_owner = (str(client_id) == str(current_client_id))
 
     # объявления пользователя
-    adverts = CarAdvert.get_adverts_by_client(client_id)
+    adverts = Car.get_car_by_client(client_id)
 
     # отзывы
     # reviews = Review.get_reviews_for_client(client_id) if Review else []

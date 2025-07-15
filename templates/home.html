@@ -49,23 +49,29 @@
     </div>
 
     <div class="car-list" id="carList">
-        {% for i in cars_models %}
+    {% for i in cars_models %}
         <div class="car-item">
-            <img src="{{ url_for('static', filename='uploads/' + i.photo) }}" alt="Car Photo" width="200px" height="150px">
+            {% if i.photo %}
+                <img src="{{ url_for('static', filename='uploads/' + i.photo) }}" alt="Car Photo" width="200px" height="150px">
+            {% else %}
+                <img src="{{ url_for('static', filename='uploads/placeholder.jpg') }}" alt="No Image" width="200px" height="150px">
+            {% endif %}
             <div><strong>ID:</strong> <span class="id">{{ i.id }}</span></div>
             <div><strong>Brand:</strong> <span class="brand">{{ i.brand }}</span></div>
             <div><strong>Model:</strong> <span class="model">{{ i.model }}</span></div>
-            <div><strong>Volume:</strong> <span class="volume">{{ i.volume }} cc</span></div>
-            <div><strong>Price:</strong> <span class="price">${{ i.price }}</span></div>
             <div><strong>Year:</strong> <span class="year">{{ i.year }}</span></div>
             <div><strong>Mileage:</strong> <span class="mileage">{{ i.mileage }} km</span></div>
-            <div><strong>Fuel Type:</strong> <span class="fuelType">{{ i.fuel_type }}</span></div>
+            <div><strong>Fuel Type:</strong> <span class="fuelType">{{ i.engine_fuel }}</span></div>
+            <div><strong>Engine Volume:</strong> <span class="engine_volume">{{ i.engine_volume }} cc</span></div>
             <div><strong>Transmission:</strong> <span class="transmission">{{ i.transmission }}</span></div>
+            <div><strong>Color:</strong> <span class="color">{{ i.color }}</span></div>
+            <div><strong>Price:</strong> <span class="price">${{ i.price }}</span></div>
             <div><strong>Description:</strong> <span class="description">{{ i.description }}</span></div>
         </div>
-        <hr>
-        {% endfor %}
-    </div>
+    <hr>
+    {% endfor %}
+</div>
+
 
     <script>
         const inputs = {

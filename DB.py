@@ -5,7 +5,7 @@ import sqlite3
 with sqlite3.connect("cars.db") as connect:
     cursor = connect.cursor()
 
-    # cursor.execute("DROP TABLE IF EXISTS Cars")
+    cursor.execute("DROP TABLE IF EXISTS Cars")
     # cursor.execute("DROP TABLE IF EXISTS Basket")
     # cursor.execute("DROP TABLE IF EXISTS Clients")
     # cursor.execute("DROP TABLE IF EXISTS Orders")
@@ -13,21 +13,23 @@ with sqlite3.connect("cars.db") as connect:
 
     cursor.execute("PRAGMA foreign_keys = ON")
 
-    # cursor.execute("""CREATE TABLE IF NOT EXISTS Cars (
-    #             id INTEGER PRIMARY KEY AUTOINCREMENT,
-    #             model TEXT NOT NULL,
-    #             volume INTEGER NOT NULL,
-    #             price INTEGER NOT NULL,
-    #             year INTEGER NOT NULL,
-    #             mileage INTEGER NOT NULL,
-    #             brand TEXT NOT NULL,
-    #             fuel_type TEXT NOT NULL,
-    #             transmission TEXT NOT NULL,
-    #             description TEXT NOT NULL,
-    #             photo TEXT,
-    #             client_id INTEGER NOT NULL
-    #             )""")
-    
+    cursor.execute("""
+        CREATE TABLE Cars (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            brand TEXT NOT NULL,
+            model TEXT NOT NULL,
+            year INTEGER NOT NULL,
+            mileage INTEGER NOT NULL,
+            engine_fuel TEXT NOT NULL,
+            engine_volume INTEGER NOT NULL,
+            transmission TEXT NOT NULL,
+            color TEXT NOT NULL,
+            price INTEGER NOT NULL,
+            description TEXT,
+            photo TEXT,
+            client_id INTEGER NOT NULL
+        )
+        """)
 
     # cursor.execute("""CREATE TABLE IF NOT EXISTS
     #                Clients(
@@ -38,25 +40,6 @@ with sqlite3.connect("cars.db") as connect:
 
 
     
-    cursor.execute("""
-            CREATE TABLE IF NOT EXISTS CarAdverts (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                client_id INTEGER NOT NULL,
-                brand TEXT NOT NULL,
-                model TEXT NOT NULL,
-                year INTEGER NOT NULL,
-                mileage INTEGER NOT NULL,
-                fuel_type TEXT NOT NULL,
-                transmission TEXT NOT NULL,
-                price INTEGER NOT NULL,
-                description TEXT,
-                photo TEXT,
-                FOREIGN KEY (client_id) REFERENCES Clients(id)
-            )
-            """)
-          
-
-
     # cursor.execute("""CREATE TABLE IF NOT EXISTS
     #            Basket(
     #            id INTEGER PRIMARY KEY,

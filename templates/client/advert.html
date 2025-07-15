@@ -9,18 +9,25 @@
 <body>
     <h1>Создать объявление</h1>
 
-    <form action="{{ url_for('advert_create') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url_for('car_advert_create') }}" method="POST" enctype="multipart/form-data">
         <input name="brand" placeholder="Марка" required><br>
         <input name="model" placeholder="Модель" required><br>
         <input name="year" type="number" placeholder="Год выпуска" required><br>
-        <input name="mileage" type="number" placeholder="Пробег" required><br>
-        <input name="fuel_type" placeholder="Тип топлива" required><br>
-        <input name="transmission" placeholder="КПП" required><br>
-        <input name="price" type="number" placeholder="Цена" required><br>
-        <textarea name="description" placeholder="Описание"></textarea><br>
-        <input type="file" name="photo"><br><br>
+        <input name="mileage" type="number" placeholder="Пробег (км)" required><br>
+        <input name="engine_fuel" placeholder="Тип топлива (например, бензин, дизель)" required><br>
+        <input name="engine_volume" type="number" step="0.1" placeholder="Объём двигателя (л)" required><br>
+        <input name="transmission" placeholder="КПП (например, автомат, механика)" required><br>
+        <input name="color" placeholder="Цвет" required><br>
+        <input name="price" type="number" placeholder="Цена ($)" required><br>
+        
+        <textarea name="description" placeholder="Описание автомобиля" rows="4"></textarea><br>
+        
+        <label>Фото автомобиля:</label><br>
+        <input type="file" name="photo" accept="image/*"><br><br>
+        
         <button type="submit">Создать</button>
     </form>
+
 
     <a href="{{ url_for('home') }}">Назад на главную</a>
 </body>
