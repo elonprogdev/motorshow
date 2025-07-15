@@ -50,12 +50,22 @@
 
     <div class="car-list" id="carList">
     {% for i in cars_models %}
+        {% for i in cars_models %}
         <div class="car-item">
+            <!-- Фото авто -->
             {% if i.photo %}
                 <img src="{{ url_for('static', filename='uploads/' + i.photo) }}" alt="Car Photo" width="200px" height="150px">
             {% else %}
                 <img src="{{ url_for('static', filename='uploads/placeholder.jpg') }}" alt="No Image" width="200px" height="150px">
             {% endif %}
+
+            <!-- Кнопка перехода в профиль продавца -->
+            <div>
+                <a href="{{ url_for('profile', client_id=i.client_id) }}">
+                    <button class="btn">Профиль продавца</button>
+                </a>
+            </div>
+
             <div><strong>ID:</strong> <span class="id">{{ i.id }}</span></div>
             <div><strong>Brand:</strong> <span class="brand">{{ i.brand }}</span></div>
             <div><strong>Model:</strong> <span class="model">{{ i.model }}</span></div>
@@ -68,6 +78,9 @@
             <div><strong>Price:</strong> <span class="price">${{ i.price }}</span></div>
             <div><strong>Description:</strong> <span class="description">{{ i.description }}</span></div>
         </div>
+    <hr>
+{% endfor %}
+
     <hr>
     {% endfor %}
 </div>
