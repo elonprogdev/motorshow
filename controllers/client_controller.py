@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash, session, make_response
 from models.client import Client
 from models.car import Car
+from models.review import Review
 # from models.order import Order
 import config
 
@@ -90,6 +91,23 @@ def logout():
 # @app.route("/profile")
 # @app.route("/profile")
 # @app.route("/profile/<int:user_id>")
+
+
+
+# @app.route('/profile/<int:client_id>')
+def public_profile(client_id):
+    client = Client.get_client_by_id(client_id)
+    adverts = Car.get_ads_by_client(client_id)
+    reviews = Review.get_reviews_about(client_id)
+    return render_template(
+        'client/public_profile.html',
+        client=client,
+        adverts=adverts,
+        reviews=reviews,
+        logged_in=session.get('logged_in', False),
+        current_user_id=session.get('user_id')  # чтобы не оставлял себе отзыв
+    )
+
 
 def profile(user_id=None):
     from models.car import Car

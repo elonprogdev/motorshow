@@ -5,9 +5,8 @@
     <ul>
     {% for ad in adverts %}
         <li>
-            <strong>{{ ad.brand }} {{ ad.model }}</strong> ({{ ad.year }}) - ${{ ad.price }}
-            <br>
-       
+            <strong>{{ ad.brand }} {{ ad.model }}</strong> ({{ ad.year }}) - ${{ ad.price }}<br>
+            <img src="{{ url_for('static', filename='uploads/' + ad.photo) }}" width="150"><br>
         </li>
     {% endfor %}
     </ul>
@@ -18,6 +17,27 @@
 <hr>
 
 <h3>Отзывы о пользователе:</h3>
+{% if reviews %}
+    <ul>
+    {% for review in reviews %}
+        <li>
+            <strong>{{ review.author_email }}</strong>: {{ review.text }}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Пока нет отзывов.</p>
+{% endif %}
+
+{% if logged_in and client.id != current_user_id %}
+<hr>
+<h3>Оставить отзыв:</h3>
+<form action="{{ url_for('leave_review', reviewed_id=client.id) }}" method="POST">
+    <textarea name="text" placeholder="Ваш отзыв..." required></textarea><br>
+    <button type="submit">Отправить</button>
+</form>
+{% endif %}
+
 <!-- {% if reviews %}
     <ul>
     {% for review in reviews %}

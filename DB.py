@@ -5,7 +5,7 @@ import sqlite3
 with sqlite3.connect("cars.db") as connect:
     cursor = connect.cursor()
 
-    cursor.execute("DROP TABLE IF EXISTS Cars")
+    # cursor.execute("DROP TABLE IF EXISTS Cars")
     # cursor.execute("DROP TABLE IF EXISTS Basket")
     # cursor.execute("DROP TABLE IF EXISTS Clients")
     # cursor.execute("DROP TABLE IF EXISTS Orders")
@@ -30,6 +30,20 @@ with sqlite3.connect("cars.db") as connect:
             client_id INTEGER NOT NULL
         )
         """)
+    
+    # cursor.execute("""
+    #     CREATE TABLE IF NOT EXISTS Reviews (
+    #     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    #     author_id INTEGER NOT NULL,
+    #     reviewed_id INTEGER NOT NULL,
+    #     text TEXT NOT NULL,
+    #     FOREIGN KEY(author_id) REFERENCES Clients(id),
+    #     FOREIGN KEY(reviewed_id) REFERENCES Clients(id)
+    #     )
+    #     """)
+    
+    
+
 
     # cursor.execute("""CREATE TABLE IF NOT EXISTS
     #                Clients(
